@@ -333,40 +333,135 @@ $maxWidth: 1920;
 .modal-window {
     z-index: 101;
     display: none;
-    background: #fff;
-    max-height: 600px;
+    background: #202020;
+    max-height: 450px;
     height: 100%;
-    max-width: 900px;
+    max-width: 750px;
     width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
     border-radius: 4px;
 
+    justify-content: center;
+    align-items: center;
+
     transform: translate(-50%, -50%)
 }
 
-.modal-window::before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
+.modal-window-header {
     background: #1A1A1A;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+    padding: 0 25px;
+
+    position: absolute;
+    top: 0;
     height: 80px;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
 }
 
 .modal-window-close .bx {
     cursor: pointer;
     // font-weight: 600;
     font-size: 32px;
-    position: absolute;
+    // position: absolute;
     color: #fff;
     top: 25px;
     right: 25px;
     text-decoration: none;
+}
+
+.modal-window-header-text {
+    font-size: 18px;
+    // position: absolute;
+    top: 25px;
+    left: 25px;
+    color: #fff;
+}
+
+.form_auth_section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.container__content {
+    width: 100%;
+    height: 100%;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.form__content {
+    width: 100%;
+    margin: 0 20px;
+    height: 280px;
+    padding: 45px;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+
+    border-radius: 10px;
+}
+
+.form__auth {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form__text {
+    @include adaptive-font(18, 14);
+    display: flex;
+    align-items: center;
+    
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 10px;
+}
+
+.form__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 380px;
+}
+
+.form__social {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+    
+}
+
+.form__social-item img {
+    width: 70px;
+    height: 70px;
+}
+
+.form__social-item:nth-child(2) img {
+    width: 150px;
+}
+
+
+.form__important-text {
+    @include adaptive-font(16, 12);
+    margin: 30px 50px 0 50px;
+    text-align: center;
 }
 
 @media screen and (min-width: 1920px) {
