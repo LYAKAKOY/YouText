@@ -341,23 +341,6 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 100;
 }
 
-.modal-window {
-  z-index: 101;
-  display: none;
-  background: #202020;
-  max-height: 450px;
-  height: 100%;
-  max-width: 750px;
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 4px;
-  justify-content: center;
-  align-items: center;
-  transform: translate(-50%, -50%);
-}
-
 .modal-window-header {
   background: #1A1A1A;
   border-top-left-radius: 4px;
@@ -388,20 +371,32 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
+.modal-window {
+  z-index: 101;
+  display: none;
+  background: #202020;
+  max-height: 450px;
+  height: 100%;
+  max-width: 700px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+}
+
+.modal-window-main {
+  width: 100%;
+}
+
 .form_auth_section {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
-}
-
-.container__content {
-  width: 100%;
-  height: 100%;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .form__content {
@@ -419,6 +414,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .form__auth {
   height: 400px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -445,14 +441,14 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 380px;
+  width: 100%;
 }
 
 .form__social {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
-  width: 60%;
+  width: 50%;
 }
 
 .form__social-item img {
@@ -486,6 +482,9 @@ h1, h2, h3, h4, h5, h6 {
   .main__subtitle {
     font-size: 32px;
   }
+  .main__input-button {
+    font-size: 16px;
+  }
 }
 @media screen and (max-width: 600px) {
   .main__input-container {
@@ -498,6 +497,30 @@ h1, h2, h3, h4, h5, h6 {
   }
   .main__input-button {
     height: 50px;
+  }
+  .form__social-item img {
+    width: 50px;
+    height: 50px;
+  }
+  .form__social-item:nth-child(2) img {
+    width: 90px;
+  }
+  .modal-window {
+    height: 400px;
+  }
+  .form__important-text {
+    margin: 0;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 600px) and (max-width: 767px) {
+  .form__important-text {
+    font-size: calc(12px + 6.8 * ((100vw - 320px) / 1920));
+  }
+}
+@media screen and (max-width: 600px) and (min-width: 767px) {
+  .form__important-text {
+    font-size: calc(12px + 4 * (100vw / 1920));
   }
 }
 @media screen and (max-width: 410px) {

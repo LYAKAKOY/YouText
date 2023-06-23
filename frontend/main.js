@@ -29,7 +29,7 @@ let modalWindow = document.querySelector('.modal-window')
 let fillerBlock = document.querySelector('.filler');
 
 loginBtn.onclick = function() {
-    modalWindow.style.display = 'flexx`';
+    modalWindow.style.display = 'flex';
     fillerBlock.style.display = 'block';
 }
 
