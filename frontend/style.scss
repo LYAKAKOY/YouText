@@ -157,7 +157,7 @@ $maxWidth: 1920;
     height: calc(100vh - 80px);
     top: 80px;
     width: 100%;
-    background: #252525;
+    background: #202020;
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
@@ -211,7 +211,7 @@ $maxWidth: 1920;
 }
 
 .main__text {
-    height: 300px;
+    height: 250px;
     justify-content: center;
     display: flex;
     flex-direction: column;
@@ -241,7 +241,7 @@ $maxWidth: 1920;
     outline: none;
     font-size: 28px;
     height: 60px;
-    width: 100%;
+    width: 90%;
     margin-right: 10px;
     font-family: "Montserrat", sans-serif;    
     background: none;
@@ -251,7 +251,7 @@ $maxWidth: 1920;
 
 .main__input-button {
     font-family: "Montserrat", sans-serif;
-    appearance: none;
+    appearance: none;   
     outline: none;
     border: none;
     font-weight: 700;
@@ -259,6 +259,7 @@ $maxWidth: 1920;
     @include adaptive-font(16, 12);
     height: 60px;
     width: 150px;
+    cursor: pointer;
 }
 
 
@@ -274,6 +275,7 @@ $maxWidth: 1920;
     height: 140px;
     background: #1A1A1A;
     color: #fff;
+    @include adaptive-font(16, 12);
 }
   
 .footer__inner {
@@ -315,8 +317,56 @@ $maxWidth: 1920;
 }
   
 .footer__social-item img {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
+}
+
+.filler {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+.modal-window {
+    z-index: 101;
+    display: none;
+    background: #fff;
+    max-height: 600px;
+    height: 100%;
+    max-width: 900px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 4px;
+
+    transform: translate(-50%, -50%)
+}
+
+.modal-window::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    background: #1A1A1A;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    height: 80px;
+    width: 100%;
+}
+
+.modal-window-close .bx {
+    cursor: pointer;
+    // font-weight: 600;
+    font-size: 32px;
+    position: absolute;
+    color: #fff;
+    top: 25px;
+    right: 25px;
+    text-decoration: none;
 }
 
 @media screen and (min-width: 1920px) {
@@ -332,7 +382,26 @@ $maxWidth: 1920;
 @media screen and (max-width: 600px) {
     .main__input-container {
         flex-direction: column;
-        height: 130px;
+        height: 120px;
     }
 
+    .main__input-field {
+        height: 50px;
+        width: 100%;
+    }
+
+    .main__input-button {
+        height: 50px;
+    }
+
+}
+
+@media screen and (max-width: 410px) {
+    .footer__inner {
+        flex-direction: column-reverse;
+        justify-content: center;
+        padding: 0;
+        align-items: center;
+        text-align: center;
+    }
 }
