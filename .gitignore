@@ -1,2 +1,5 @@
 .idea
 web_app/**/__pycache__/
+audio
+video
+pictures_youtube

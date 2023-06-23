@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import VideoUrlForm
 from .downloading_youtube_videos import download_video
 from .speech_recognition import speech_recognition_base
-from .tasks import task_download_audio
+from .tasks import task_download_audio, task_download_pictures
 
 
 # Create your views here.
@@ -14,6 +14,7 @@ def generator(request):
             task_download_audio.delay(video_url)
             download_video(video_url)
             text = speech_recognition_base()
+            task_download_pictures('video/youtube_video.mp4', 10, 30.0)
             return render(request, 'article_generator/html/text.html', {'text': text})
 
     else:
