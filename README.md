@@ -6,7 +6,9 @@
 
 ## Как запустить проект
 1. Требуется сделать git clone проекта;
-`git clone https://github.com/LYAKAKOY/YouText`
+```
+git clone https://github.com/LYAKAKOY/YouText
+```
 3. Прописать в терминале docker-compose build;
 4. Прописать в терминале docker-compose up;
 5. Подождать загрузки модели [Whisper](https://github.com/openai/whisper) для распознавания речи и загрузки русского языка для исправления орфографических ошибок;
