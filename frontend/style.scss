@@ -206,7 +206,7 @@ $maxWidth: 1920;
 /* main content code */
 
 .main__container {
-    height: 1000px;
+    height: 700px;
     max-width: 1640px;
     width: 100%;
     margin: 0 auto;
@@ -214,6 +214,10 @@ $maxWidth: 1920;
     justify-content: center;
     flex-direction: column;
     padding: 50px 20px;
+}
+
+.main__container.opened {
+  height: 1000px;
 }
 
 .main__text {
@@ -225,33 +229,50 @@ $maxWidth: 1920;
 }
 
 .main__title {
+    opacity: 0;
+    transform: translateX(-5%);
+    transition: all 0.25s ease-out;
     @include adaptive-font(64, 24);
     font-family: "Montserrat Black", sans-serif;
 }
 
+.main__title.element-show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .main__subtitle {
+    opacity: 0;
+    transform: translateX(-5%);
+    transition: all 0.25s ease-out;
+    transition-delay: 0.25s;
     @include adaptive-font(32, 16);
     color: #ffffffba;
     font-weight: 600;
 }
 
+.main__subtitle.element-show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 
 .main__input-container {
-    height: 150px;
-    display: flex;
-    justify-content: space-between;
+  height: 150px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .main__input-field {
-    border: 1px solid #fff;
-    font-size: 28px;
-    height: 60px;
-    width: 90%;
-    margin-right: 10px;
-    font-family: "Montserrat", sans-serif;    
-    background: none;
-    color: #fff;
-    padding: 0 10px;
+  border: 1px solid #fff;
+  font-size: 28px;
+  height: 60px;
+  width: 90%;
+  margin-right: 10px;
+  font-family: "Montserrat", sans-serif;    
+  background: none;
+  color: #fff;
+  padding: 0 10px;
 }
 
 .main__input-button {
@@ -265,23 +286,44 @@ $maxWidth: 1920;
     height: 60px;
     width: 150px;
     cursor: pointer;
+    transition: opacity 0.1s ease;
+}
+
+.main__input-button:hover {
+  opacity: 0.8;
 }
 
 .main__params {
   width: 100%;
   max-width: 820px;
+  height: 100px;
+}
+
+.main__params.opened {
   height: 450px;
 }
 
 .main__params-title {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.95);
   @include adaptive-font(32, 18);
   font-weight: 600;
   margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.main__params-title-button {
+  width: 25px;
+  height: 20px;
+  margin-left: 10px;
+  background-image: url(media/system-icons/Arrow_down.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .main__params-inner {
-  display: flex;
+  display: none;
 }
 
 .main__params-left {
@@ -394,8 +436,6 @@ $maxWidth: 1920;
     border-top-right-radius: 4px;
     padding: 0 25px;
 
-    position: absolute;
-    top: 0;
     height: 80px;
     width: 100%;
     display: flex;
@@ -417,7 +457,6 @@ $maxWidth: 1920;
 
 .modal-window-header-text {
     font-size: 18px;
-    // position: absolute;
     top: 25px;
     left: 25px;
     color: #fff;
@@ -437,6 +476,7 @@ $maxWidth: 1920;
 
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     transform: translate(-50%, -50%);
     margin: 0 auto;
@@ -444,11 +484,12 @@ $maxWidth: 1920;
 
 .modal-window-main {
     width: 100%;
+    height: 370px;
 }
 
 .form_auth_section {
     width: 100%;
-    height: 100%;
+    height: 300px;
     display: flex;
     align-items: center;
 }
@@ -531,6 +572,10 @@ $maxWidth: 1920;
     .main__input-button {
         font-size: 16px;
     }
+
+    .main__params-title {
+      font-size: 32px;
+    }
 }
 
 @media screen and (max-width: 855px) {
@@ -539,13 +584,30 @@ $maxWidth: 1920;
   }
 
   .main__container {
-    height: 1200px;
+    height: 600px;
+  }
+
+  .main__container.opened {
+    height: 900px;
+  }
+
+  .main__input-container {
+    height: 200px;
+    margin-bottom: 20px;
   }
 
   .main__params {
-    margin-top: 50px;
-    height: 600px;
+    height: 100px;
   }
+  
+  .main__params.opened {
+    height: 450px;
+  }
+
+  // .main__params {
+  //   margin-top: 50px;
+  //   height: 600px;
+  // }
 
   .main__params-title {
     margin-bottom: 10px;
@@ -586,13 +648,23 @@ $maxWidth: 1920;
     }
 
     .modal-window {
-        height: 400px;
+        height: 350px;
     }
 
     .form__important-text {
         @include adaptive-font(16, 12);
         margin: 10px 0;
         text-align: center;
+    }
+
+    .main__params-left {
+      max-width: 410px;
+      margin: 0;
+    }
+
+    .main__params-right {
+      max-width: 410px;
+      margin: 0;
     }
 
 }
