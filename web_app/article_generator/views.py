@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from .forms import VideoUrlForm
-from .downloading_youtube_videos import download_video, video_cropping
+from .downloading_youtube_videos import download_video, video_cropping, audio_cropping
 from .speech_recognition import speech_recognition_base
-from .tasks import task_download_audio, task_download_pictures, task_audio_cropping
+from .tasks import task_download_audio, task_download_pictures
 from .youtube_video import get_info_about_video
 
 
@@ -15,7 +15,7 @@ def generator(request):
             task_download_audio.delay(video_url)
             download_video(video_url)
             info_about_video = get_info_about_video(video_url)
-            task_audio_cropping.delay(form.cleaned_data['start_time'], form.cleaned_data['end_time'])
+            audio_cropping(form.cleaned_data['start_time'], form.cleaned_data['end_time'])
             video_cropping(form.cleaned_data['start_time'], form.cleaned_data['end_time'])
             if form.cleaned_data['interval_picture']:
                 task_download_pictures('video/youtube_video.mp4',

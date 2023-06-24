@@ -30,7 +30,7 @@ def extract_still_frame(video_path, interval_seconds, start_video, end_video):
                range(frame_num, frame_num + frame_interval)):
             image = Image.fromarray(np.uint8(frame))
             image = image.convert("RGB")  # Конвертируем в правильное цветовое пространство
-            image.save(f'./pictures_youtube/picture_time{round(frame_num / fps, 2)}.jpg', format='JPEG')
+            image.save(f'./pictures_youtube/picture_time{int(frame_num / fps)}.jpg', format='JPEG')
 
     clip.close()
 

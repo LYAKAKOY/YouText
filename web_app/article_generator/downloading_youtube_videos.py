@@ -10,6 +10,7 @@ def download_video(video_url: str) -> None:
     video_options = {
         'format': 'bestvideo+bestaudio',
         'outtmpl': './video/youtube_video.mp4',
+        'merge_output_format': 'mp4'
     }
 
     ydl = youtube_dl.YoutubeDL(video_options)
@@ -31,7 +32,7 @@ def video_cropping(start_time: datetime.time, end_time: datetime.time) -> None:
         return
     elif start_time is None:
         start_time = datetime.time(0, 0, 0)
-    else:
+    elif end_time is None:
         video = VideoFileClip(video_path)
         timedelta_obj = datetime.timedelta(seconds=video.duration)
         hours = timedelta_obj.seconds // 3600
@@ -54,7 +55,7 @@ def audio_cropping(start_time: datetime.time, end_time: datetime.time) -> None:
         return
     elif start_time is None:
         start_time = datetime.time(0, 0, 0)
-    else:
+    elif end_time is None:
         audio = AudioSegment.from_file(audio_path)
         timedelta_obj = datetime.timedelta(seconds=audio.duration_seconds)
         hours = timedelta_obj.seconds // 3600
