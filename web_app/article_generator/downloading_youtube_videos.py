@@ -1,3 +1,4 @@
+import datetime
 from datetime import datetime
 from pydub import AudioSegment
 import youtube_dl
@@ -26,23 +27,42 @@ def download_audio(video_url: str) -> None:
 
 def video_cropping(start_time: datetime.time, end_time: datetime.time) -> None:
     video_path = './video/youtube_video.mp4'
+    if start_time is None and end_time is None:
+        return
+    elif start_time is None:
+        start_time = datetime.time(0, 0, 0)
+    else:
+        video = VideoFileClip(video_path)
+        timedelta_obj = datetime.timedelta(seconds=video.duration)
+        hours = timedelta_obj.seconds // 3600
+        minutes = (timedelta_obj.seconds // 60) % 60
+        seconds = timedelta_obj.seconds % 60
+        end_time = datetime.time(hours, minutes, seconds)
+
     video = VideoFileClip(video_path)
 
-    # Преобразуем время в секунды
     start_seconds = start_time.hour * 3600 + start_time.minute * 60 + start_time.second
     end_seconds = end_time.hour * 3600 + end_time.minute * 60 + end_time.second
 
-    # Обрезаем видео
     cropped_video = video.subclip(start_seconds, end_seconds)
     cropped_video.write_videofile(video_path)
 
 
 def audio_cropping(start_time: datetime.time, end_time: datetime.time) -> None:
-    # Загружаем аудиофайл
     audio_path = './audio/youtube_audio.mp3'
-    audio = AudioSegment.from_file(audio_path)
+    if start_time is None and end_time is None:
+        return
+    elif start_time is None:
+        start_time = datetime.time(0, 0, 0)
+    else:
+        audio = AudioSegment.from_file(audio_path)
+        timedelta_obj = datetime.timedelta(seconds=audio.duration_seconds)
+        hours = timedelta_obj.seconds // 3600
+        minutes = (timedelta_obj.seconds // 60) % 60
+        seconds = timedelta_obj.seconds % 60
+        end_time = datetime.time(hours, minutes, seconds)
 
-    # Преобразуем время начала и время окончания в миллисекунды
+    audio = AudioSegment.from_file(audio_path)
 
     start_ms = (start_time.hour * 3600 + start_time.minute * 60 + start_time.second) * 1000
     end_ms = (end_time.hour * 3600 + end_time.minute * 60 + end_time.second) * 1000
