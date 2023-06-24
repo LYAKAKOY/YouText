@@ -1,6 +1,8 @@
 import whisper
+from autocorrect import Speller
 
 model = whisper.load_model("base")
+spell = Speller(lang='ru')
 
 
 def speech_recognition_base():
@@ -9,4 +11,4 @@ def speech_recognition_base():
     text = ''
     for segment in result['segments']:
         text += f"[{round(segment['start'], 2)}:{round(segment['end'], 2)}] {segment['text']}"
-    return text
+    return spell(text)

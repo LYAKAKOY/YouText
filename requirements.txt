@@ -10,3 +10,5 @@ openai==0.27.8
 moviepy==1.0.3
 pillow==9.5.0
 pydub==0.25.1
+autocorrect==2.6.1
+google-api-python-client==2.90.0
