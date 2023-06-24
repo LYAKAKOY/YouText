@@ -1,2 +1,2 @@
 # YouText
-web-app for generating text from YouTube videos
+Приложение для генерации статей по видеороликам
