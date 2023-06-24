@@ -5,7 +5,7 @@
 [ChatGPT](https://platform.openai.com/docs/guides/gpt/chat-completions-api), [Whisper](https://github.com/openai/whisper), Django, JavaScript.
 
 ## По какому адресу будет доступен проект?
-По домену [htttp](http://localhost:8000/)
+По домену [http://localhost:8000/](http://localhost:8000/)
 
 ## Как запустить проект
 1. Требуется сделать git clone проекта;
