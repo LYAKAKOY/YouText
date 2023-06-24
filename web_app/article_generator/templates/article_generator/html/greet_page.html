@@ -6,7 +6,6 @@
     <title>Title</title>
 </head>
 <body>
-<img src="{% static 'article_generator/picture_time10.jpg' %}">
 <form action="{% url 'generator' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}

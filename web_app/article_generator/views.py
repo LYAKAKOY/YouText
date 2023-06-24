@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import render
 from .forms import VideoUrlForm
 from .downloading_youtube_videos import download_video, video_cropping, audio_cropping
@@ -23,6 +25,13 @@ def generator(request):
             else:
                 task_download_pictures('video/youtube_video.mp4')
             text = speech_recognition_base()
+            os.remove('./audio/youtube_audio.mp3')
+            os.remove('./video/youtube_video.mp4')
+            file_list = os.listdir("./pictures_youtube")
+            for file_name in file_list:
+                file_path = os.path.join('./pictures_youtube', file_name)
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
             return render(request, 'article_generator/html/text.html', {'text': text})
 
     else:
