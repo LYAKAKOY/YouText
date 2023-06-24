@@ -2,7 +2,7 @@
 Приложение для генерации статей по видеороликам из YouTube.
 
 ## Стек программы
-[ChatGPT](https://platform.openai.com/docs/guides/gpt/chat-completions-api), [Whisper](https://github.com/openai/whisper), Django.
+[ChatGPT](https://platform.openai.com/docs/guides/gpt/chat-completions-api), [Whisper](https://github.com/openai/whisper), Django, Selery.
 
 ## Как запустить проект
 1. Требуется сделать git clone проекта;
