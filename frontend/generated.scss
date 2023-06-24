@@ -272,30 +272,17 @@ to {
     border-radius: 4px;
 }
 
-.main__inner-right-info-title {
-    
-}
-
-.duration {
-
-}
-
 .main__inner-right-info {
     margin-top: 50px;
     width: 100%;
     border-radius: 4px;
-}
-.main__inner-right-info-item {
-
-    // border-radius: 4px;
 }
 
 .main__inner-right-info-item-title {
     height: 60px;
     display: flex;
     align-items: center;
-    font-size: 16px;
-    // padding: 0 20px;    
+    font-size: 16px;   
 }
 
 .item__time {
@@ -306,25 +293,19 @@ to {
 }
 
 .item__name-container {
-    cursor: pointer;
     display: flex;
     align-items: center;
 
 }
-.name {
-}
 
 .main__inner-right-info-item-text {
-    // padding: 0 20px 20px 20px;
     display: flex;
-
-
-    // display: none;
 }
+
 .item__text {
     width: 100%;
     min-height: 500px;
-    // height: 100%;
+
     resize: none;
     white-space: none;
     font-size: 18px;
@@ -332,9 +313,7 @@ to {
     border: none;
     outline: none;
     border-radius: 4px;
-    // overflow-y: hidden;
 
-    // padding: 0 20px;
 }
 
 .item__text::-webkit-scrollbar {
@@ -348,29 +327,61 @@ to {
 
 .item__text::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.35);
-//   outline: 1px solid red;
 }
 
+.success-notification {
+    animation: move_notification 0.2s ease;
+    width: 300px;
+    height: 80px;
 
+    position: absolute;
+    bottom: 40px;
+    right: 65px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background: #81c512;
+    font-size: 16px;
+    font-weight: 500;
+    color: #edffcf;
+}
 
+.success-notification.closed {
+    animation: move_notification-closed 0.2s ease;
+    display: none;
+}
 
+@keyframes move_notification {
+    0% {
+        transform: translateY(50%);
+        opacity: 0;
+        
+    }
 
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 
+}
 
+@keyframes move_notification-closed {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 
+    100% {
+        transform: translateY(50%);
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+    }
 
+}
 
-
-
-
-
-
-
-
-
-
-  /* footer code */
-
+/* footer code */
 
 .footer {
     height: 140px;
@@ -612,7 +623,6 @@ to {
 
 
 @media screen and (max-width: 600px) {
-
     .video {
         width: 600px;
         height: 250px;
@@ -653,6 +663,10 @@ to {
 
     .item__time {
         display: none;
+    }
+
+    .success-notification {
+        visibility: hidden;
     }
 }
 

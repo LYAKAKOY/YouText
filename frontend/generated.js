@@ -28,7 +28,9 @@ const dom = {
     closeBtn: document.querySelector('.modal-window-close'),
     modalWindow: document.querySelector('.modal-window'),
     fillerBlock: document.querySelector('.filler'),
-    textarea: document.querySelector('.item__text')
+    textarea: document.querySelector('.item__text'),
+    successBtn: document.querySelector('.success-notification'),
+    copyBtn: document.querySelector('.copy-button')
 }
 
 dom.loginBtn.onclick = function() {
@@ -49,8 +51,27 @@ document.addEventListener('keydown', function(event) {
 })
 
 
-function copyContent() {
-    navigator.clipboard.writeText(`${dom.textarea.value}`);
+const copyContent = async () => {
+    try {
+        await navigator.clipboard.writeText(dom.textarea.innerHTML);
+        successNotification();
+        dom.successBtn.style.display = 'flex';
+    } catch (err) {
+        console.error('Failed to copy: ', err);
+    }
+}
+
+function successNotification() {
+    setTimeout(function() {
+        dom.successBtn.classList.add('closed');
+    }, 2000)
+    dom.copyBtn.disabled = true;
+
+    setTimeout(function() {
+        dom.successBtn.classList.remove('closed');
+        dom.successBtn.style.display = 'none';
+        dom.copyBtn.disabled = false;
+    }, 2200)
 }
 
 function autoAdjust() {
