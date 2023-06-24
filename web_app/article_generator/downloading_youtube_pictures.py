@@ -32,31 +32,31 @@ def extract_still_frame(video_path, interval_seconds, start_video, end_video):
             frame_hash = imagehash.average_hash(Image.fromarray(np.uint8(frame)))
             if frame_hash not in saved_frames:
                 saved_frames.add(frame_hash)
-            image = Image.fromarray(np.uint8(frame))
-            image = image.convert("RGB")  # Конвертируем в правильное цветовое пространство
-            image.save(f'./pictures_youtube/picture_time{int(frame_num / fps)}.jpg', format='JPEG')
+                image = Image.fromarray(np.uint8(frame))
+                image = image.convert("RGB")  # Конвертируем в правильное цветовое пространство
+                image.save(f'./pictures_youtube/picture_time{int(frame_num / fps)}.jpg', format='JPEG')
 
     clip.close()
 
 
-# def download_picture_from_video(video_path: str, interval_seconds: int):
-#     clip = VideoFileClip(video_path)
-#     fps = clip.fps
-#     duration = clip.duration
-#     len_video = int(duration * fps)
-#     extract_still_frame(video_path, interval_seconds, 0, len_video)
-
-async def download_picture_from_video(video_path: str, interval_seconds: int):
+def download_picture_from_video(video_path: str, interval_seconds: int):
     clip = VideoFileClip(video_path)
     fps = clip.fps
     duration = clip.duration
     len_video = int(duration * fps)
-    with ThreadPoolExecutor() as thread_pool:
-        chunks = chunks_of_number(len_video)
-        tasks = []
-        loop: AbstractEventLoop = asyncio.get_running_loop()
-        for i, item in enumerate(chunks[:len(chunks) - 1], start=0):
-            tasks.append(loop.run_in_executor(thread_pool, extract_still_frame, video_path, interval_seconds, item,
-                                              chunks[i + 1]))
+    extract_still_frame(video_path, interval_seconds, 0, len_video)
 
-        await asyncio.gather(*tasks)
+# async def download_picture_from_video(video_path: str, interval_seconds: int):
+#     clip = VideoFileClip(video_path)
+#     fps = clip.fps
+#     duration = clip.duration
+#     len_video = int(duration * fps)
+#     with ThreadPoolExecutor() as thread_pool:
+#         chunks = chunks_of_number(len_video)
+#         tasks = []
+#         loop: AbstractEventLoop = asyncio.get_running_loop()
+#         for i, item in enumerate(chunks[:len(chunks) - 1], start=0):
+#             tasks.append(loop.run_in_executor(thread_pool, extract_still_frame, video_path, interval_seconds, item,
+#                                               chunks[i + 1]))
+#
+#         await asyncio.gather(*tasks)

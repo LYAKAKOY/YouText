@@ -9,7 +9,7 @@ class VideoUrlForm(forms.Form):
                                            required=False)
     article_length = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'main__input', 'placeholder': "1500"}),
                                         required=False)
-    interval_picture = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'main__input', 'placeholder': "20"}),
+    interval_picture = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'main__input', 'placeholder': "10"}),
                                           required=False)
 
     class Meta:

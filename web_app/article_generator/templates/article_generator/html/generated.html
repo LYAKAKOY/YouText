@@ -12,11 +12,17 @@
         <div class="header">
             <div class="header__container">
                 <div class="header__item">
-                    <div><a href="#" class="item__logo">youtext</a></div>
+                    <div><a href="{% url 'generator' %}" class="item__logo">youtext</a></div>
                 </div>  
-                <ul class="items-list">
-                    <li><a href="#" class="item__link item__link-login">войти</a></li>
-                </ul>
+                {% if not request.user.is_authenticated %}
+                    <ul class="items-list">
+                        <li><a href="#" class="item__link item__link-login">войти</a></li>
+                    </ul>
+                {% else %}
+                    <ul class="items-list">
+                        <li><a href="{% url 'logout' %}" class="item__link item__link-login">выйти</a></li>
+                    </ul>
+                {% endif %}
                 <div class="burger">
                     <div class="line1"></div>   
                     <div class="line2"></div>   
@@ -33,7 +39,7 @@
                         <div class="main__inner-left-info-title title">Название канала: <span class="channel-name">{{ name_channel }}</span></div>
                         <div class="main__inner-left-info-video">
                             <iframe width="900" height="450" class="video"
-                                src="{{ video }}"
+                                src="https://www.youtube.com/embed/{{ video }}"
                                 title="YouTube video player" 
                                 frameborder="0" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -42,32 +48,36 @@
                         </div>
                     </div>
                     <div class="main__inner-left-right-info">
+                        <div class="main__inner-left-info-title title">Продолжительность: <span class="duration">{{ duration }}</span></div>
                         <div class="subtitle">Длина аннотации: <span class="ann-length">{{ annotation_length }}</span></div>
                         <div class="subtitle">Длина статьи: <span class="ann-length">{{ article_length }}</span></div>
                         <div class="subtitle">Интервал создания скриншота: <span class="ann-length">{{ interval_picture }}</span></div>
                     </div>  
                 </div>
-                <div class="main__inner-right">
+               <div class="main__inner-right">
                     <div class="main__inner-right-info">
                         <div class="main__inner-right-info-item">
                             <div class="main__inner-right-info-item-title">
-                                <div class="item__name-container">
-                                    <div class="name">Сгенерированная статья</div>
-                                    <div class="main__inner-right-button">
-                                        <button class="copy-button" onclick="copyContent()"><i class='bx bx-copy'></i> Копировать</button>
-                                    </div>
+                                <div class="item__time">
+                                <span class="start-time">01:02:03</span>
+                            </div>
+                            <div class="item__name-container">
+                                <div class="name">Сгенерированная статья</div>
+                                <div class="main__inner-right-button">
+                                    <button class="copy-button" onclick="copyContent()"><i class='bx bx-copy'></i> Копировать</button>
                                 </div>
                             </div>
-                            <div class="main__inner-right-info-item-text">
-                                <img src="" alt="">
-                                <textarea class="item__text">
-                                    {{ text|safe }}
-                                </textarea>
+                        </div>
+                        <div class="main__inner-right-info-item-text">
+                            <img src="" alt="">
+                            <div class="item__text" contenteditable>
+                                {{ text|safe }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </div> q
             <div class="success-notification">
                 <p>Успешное копирование!</p>
             </div>
@@ -125,7 +135,7 @@
                 </div>
             </div>
         </footer>
-    
+    </div>
 
     <script src="../../../static/article_generator/js/generated.js"></script>
 </body>

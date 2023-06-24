@@ -88,9 +88,12 @@ function changeVisibility() {
 }
 
 function changeButton() {
-    dom.mainContainer.classList.contains('opened')
-    ? dom.paramsButton.style.backgroundImage = "url(media/system-icons/Arrow_up.svg"
-    : dom.paramsButton.style.backgroundImage = "url(media/system-icons/Arrow_down.svg)"
+    if (dom.mainContainer.classList.contains('opened')) {
+         dom.paramsButton.classList.add('opened');
+    }
+    else {
+        dom.paramsButton.classList.remove('opened');
+    }
 }
 
 document.addEventListener('keydown', function(event) {

@@ -17,6 +17,6 @@ def speech_recognition_base():
             if os.path.exists(f"pictures_youtube/picture_time{part}.jpg"):
                 shutil.move(f"pictures_youtube/picture_time{part}.jpg",
                             f'article_generator/static/article_generator/picture/picture_time{part}.jpg')
-                text += f"<img src=\'/static/article_generator/picture/picture_time{part}.jpg\' >"
+                text += f"<img contenteditable=\"false\" class=\"textarea__img\" src=\'/static/article_generator/picture/picture_time{part}.jpg\' >"
                 break
     return spell(text)

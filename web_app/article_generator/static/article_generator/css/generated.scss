@@ -310,10 +310,16 @@ to {
     white-space: none;
     font-size: 18px;
     font-family: 'Verdana';
-    border: none;
     outline: none;
     border-radius: 4px;
+    background: #fffffff2;
+    color: black;
 
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    overflow: auto;
+    padding: 2px;
+    resize: both;
+    padding: 0 15px;
 }
 
 .item__text::-webkit-scrollbar {
@@ -326,7 +332,14 @@ to {
 }
 
 .item__text::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.35);
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.textarea__img {
+    width: 56%;
+    height: auto;
+    display: flex;
+    margin: 20px auto;
 }
 
 .success-notification {

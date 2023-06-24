@@ -210,6 +210,7 @@ input {
   display: flex;
   flex-direction: column;
   color: #fff;
+
 }
 
 .main__title {
@@ -217,6 +218,7 @@ input {
   transform: translateX(-5%);
   transition: all 0.25s ease-out;
   font-family: "Montserrat Black", sans-serif;
+  font-weight: 900;
 }
 @media (max-width: 767px) {
   .main__title {
@@ -338,6 +340,16 @@ input {
   height: 20px;
   margin-left: 10px;
   background-image: url(../media/system-icons/Arrow_down.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.main__params-title-button.opened {
+  width: 25px;
+  height: 20px;
+  margin-left: 10px;
+  background-image: url(../media/system-icons/Arrow_up.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -610,6 +622,10 @@ input {
   }
   .main__params-title {
     font-size: 32px;
+  }
+
+  .main__params-subtitle {
+    font-size: 16px;
   }
 }
 @media screen and (max-width: 855px) {
