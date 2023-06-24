@@ -9,10 +9,16 @@
 ```
 git clone https://github.com/LYAKAKOY/YouText
 ```
-3. Прописать в терминале docker-compose build;
-4. Прописать в терминале docker-compose up;
-5. Подождать загрузки модели [Whisper](https://github.com/openai/whisper) для распознавания речи и загрузки русского языка для исправления орфографических ошибок;
-6. Проект будет доступен по адресу [http://localhost:8000/](http://localhost:8000/)
+2. Прописать в терминале docker-compose build;
+```
+docker-compose build
+```
+3. Прописать в терминале docker-compose up;
+```
+docker-compose up
+```
+4. Подождать загрузки модели [Whisper](https://github.com/openai/whisper) для распознавания речи и загрузки русского языка для исправления орфографических ошибок;
+5. Проект будет доступен по адресу [http://localhost:8000/](http://localhost:8000/)
 ## Дизайн проекта
 ### Палитра проекта
 ![Палитра проекта](https://i.imgur.com/iAV7ysi.png)
