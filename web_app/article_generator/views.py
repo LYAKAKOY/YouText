@@ -1,4 +1,3 @@
-import asyncio
 import os
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
@@ -23,15 +22,10 @@ def generator(request):
             duration = get_video_duration('video/youtube_video.mp4')
             audio_cropping(form.cleaned_data['start_time'], form.cleaned_data['end_time'])
             video_cropping(form.cleaned_data['start_time'], form.cleaned_data['end_time'])
-            if form.cleaned_data['interval_picture']:
-                download_picture_from_video('video/youtube_video.mp4',
-                                            interval_seconds=form.cleaned_data['interval_picture'])
-            else:
-                download_picture_from_video('video/youtube_video.mp4', 10)
             if form.cleaned_data['annotation_length']:
-                text = speech_recognition_base(form.cleaned_data['annotation_length'])
+                text = speech_recognition_base(form.cleaned_data['annotation_length'], form.cleaned_data['interval_picture'])
             else:
-                text = speech_recognition_base()
+                text = speech_recognition_base(form.cleaned_data['interval_picture'])
             os.remove('./audio/youtube_audio.mp3')
             os.remove('./video/youtube_video.mp4')
             file_list = os.listdir("./pictures_youtube")

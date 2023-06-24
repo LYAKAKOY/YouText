@@ -11,10 +11,10 @@ def task_download_audio(video_url: str) -> None:
 
 
 @shared_task
-def task_audio_cropping(start_time: datetime.time, end_time: datetime.time) -> None:
-    audio_cropping(start_time, end_time)
+def task_download_picture_from_video(interval: int = 10) -> None:
+    if interval:
+        download_picture_from_video('video/youtube_video.mp4',
+                                    interval_seconds=interval)
+    else:
+        download_picture_from_video('video/youtube_video.mp4', interval)
 
-
-@shared_task
-def task_download_pictures(video_path: str, interval_seconds: int = 10) -> None:
-    asyncio.run(download_picture_from_video(video_path, interval_seconds))
