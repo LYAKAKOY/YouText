@@ -10,5 +10,5 @@ def task_download_audio(video_url: str) -> None:
 
 
 @shared_task
-def task_download_pictures(video_path: str, interval_seconds: int, threshold: float | int) -> None:
-    asyncio.run(download_picture_from_video(video_path, interval_seconds, threshold))
+def task_download_pictures(video_path: str, interval_seconds: int = 10) -> None:
+    asyncio.run(download_picture_from_video(video_path, interval_seconds))
