@@ -27,7 +27,7 @@ def task_audio_cropping(start_time: datetime.time, end_time: datetime.time) -> N
 
 
 @shared_task
-def task_download_picture_from_video(interval: int | None) -> None:
+def task_download_picture_from_video(interval: int | None = 10) -> None:
     if interval:
         download_picture_from_video('video/youtube_video.mp4',
                                     interval_seconds=interval)
