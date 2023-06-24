@@ -28,7 +28,10 @@ def generator(request):
                                             interval_seconds=form.cleaned_data['interval_picture'])
             else:
                 download_picture_from_video('video/youtube_video.mp4', 10)
-            text = speech_recognition_base()
+            if form.cleaned_data['annotation_length']:
+                text = speech_recognition_base(form.cleaned_data['annotation_length'])
+            else:
+                text = speech_recognition_base()
             os.remove('./audio/youtube_audio.mp3')
             os.remove('./video/youtube_video.mp4')
             file_list = os.listdir("./pictures_youtube")
