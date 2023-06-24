@@ -142,6 +142,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTHENTICATION_BACKENDS = [
@@ -178,6 +180,6 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('ID_GOOGLE')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('SECRET_GOOGLE_KEY')
 
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/dashboard'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'

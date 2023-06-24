@@ -1,6 +1,6 @@
 import os
-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import logout
 from .forms import VideoUrlForm
 from .downloading_youtube_videos import download_video, video_cropping, audio_cropping
 from .speech_recognition import speech_recognition_base
@@ -36,4 +36,9 @@ def generator(request):
 
     else:
         form = VideoUrlForm()
-        return render(request, 'article_generator/html/greet_page.html', {'form': form})
+        return render(request, 'article_generator/html/index.html', {'form': form})
+
+
+def logout_social(request):
+    logout(request)
+    return redirect('/')

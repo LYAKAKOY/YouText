@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>youtext</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../../static/article_generator/css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -12,11 +13,17 @@
         <div class="header">
             <div class="header__container">
                 <div class="header__item">
-                    <div><a href="#" class="item__logo">youtext</a></div>
-                </div>  
+                    <div><a href="{% url 'generator' %}" class="item__logo">youtext</a></div>
+                </div>
+                {% if user.is_auntificated %}
                 <ul class="items-list">
                     <li><a href="#" class="item__link item__link-login">войти</a></li>
                 </ul>
+                {% else %}
+                    <ul class="items-list">
+                    <li><a href="{% url 'logout' %}" class="item__link item__link-login">выйти</a></li>
+                </ul>
+                {% endif %}
                 <div class="burger">
                     <div class="line1"></div>   
                     <div class="line2"></div>   
@@ -32,47 +39,55 @@
                     <div class="main__title">Начните работу с нашим инструментом</div>
                     <div class="main__subtitle">В один клик сгенерируйте статью по видеоролику</div>
                 </div>
+                <form action="{% url 'generator' %}" method="post">
+                        {% csrf_token %}
+                    <div class="form-error">{{ form.video_url.errors }}</div>
                 <div class="main__input-container">
-                    <input type="text" class="main__input-field">
-                    <button class="main__input-button">Сгенерировать</button>
+                    {{ form.video_url }}
+                    <button class="main__input-button" type="submit">Сгенерировать</button>
                 </div>
                 <div class="main__params">
                     <div class="main__params-title">Укажите параметры (опционально) <a href="#" class="main__params-title-button"></a></div>
                     <div class="main__params-inner">
                         <div class="main__params-left">
+                            <div class="form-error">{{ form.interval_picture.errors }}</div>
                             <div class="main__params-subtitle">
                                 Интервал создания скриншота 
                             </div>
-                            <input class="main__input" type="number" placeholder="30">
-    
+                            {{ form.interval_picture }}
                             <div class="main__params-range">
+                                <div class="form-error">{{ form.start_time.errors }}</div>
                                 <div class="main__params-subtitle">
                                     Диапазон
                                 </div>
+                                <div class="form-error">{{ form.end_time.errors }}</div>
                                 <div class="params-range-inputs">
-                                    <input type="text" name="" id="" placeholder="00:03:25">
+                                    {{ form.start_time }}
                                     <span>—</span>
-                                    <input type="text" name="" id="" placeholder="00:15:24">
+                                    {{ form.end_time }}
                                 </div>
                             </div>
                         </div>
                         <div class="main__params-right">
                             <div class="main__params-length">
+                                <div class="form-error">{{ form.article_length.errors }}</div>
                                 <div class="main__params-subtitle">
                                     Длина статьи 
                                 </div>
-                                <input class="main__input" type="number" placeholder="1500">
+                                {{ form.article_length }}
                             </div>
     
                             <div class="main__params-ann-length">
+                                <div class="form-error">{{ form.annotation_length.errors }}</div>
                                 <div class="main__params-subtitle">
                                     Длина аннотации
                                 </div>
-                                <input class="main__input" type="number" placeholder="250">
+                                {{ form.annotation_length }}
                             </div>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </main>
 
@@ -92,13 +107,13 @@
                                     Войти через:
                                 </div>  
                                 <div class="form__social">
-                                    <a href="" class="form__social-item"><img src="media/icons/vk-colored.png" alt=""></a>
-                                    <a href="" class="form__social-item"><img src="media/icons/yandex_id.png" alt=""></a>
-                                    <a href="" class="form__social-item"><img src="media/icons/youtube.png" alt=""></a>
+                                    <a href="{% url 'social:begin' 'vk-oauth2' %}" class="form__social-item"><img src="{% static 'article_generator/media/icons/vk-colored.png' %}" alt=""></a>
+                                    <a href="{% url 'social:begin' 'yandex-oauth2' %}" class="form__social-item"><img src="{% static 'article_generator/media/icons/yandex_id.png' %}" alt=""></a>
+                                    <a href="{% url 'social:begin' 'google-oauth2' %}" class="form__social-item"><img src="{% static 'article_generator/media/icons/youtube.png' %}" alt=""></a>
                                 </div>
                             </div>
                             <div class="form__important-text">
-                                Авторизуясь, вы получаете бонус в виде более быстрой работы нашего инструмента.
+                                Авторизуясь, вы получаете бонус.
                             </div>
                         </form>
                     </div>
@@ -121,9 +136,9 @@
                 <div class="footer__social">
                     <div class="footer__social-title">Мы в социальных сетях:</div>
                     <div class="footer__social-container">
-                        <a class="footer__social-item" href="#"><img src="media/icons/icon-discord.png" alt=""></a>
-                        <a class="footer__social-item" href="#"><img src="media/icons/icon-telegram.png" alt=""></a>
-                        <a class="footer__social-item" href="#"><img src="media/icons/icon-vk.png" alt=""></a>
+                        <a class="footer__social-item" href="#"><img src="{% static 'article_generator/media/icons/icon-discord.png' %}" alt=""></a>
+                        <a class="footer__social-item" href="#"><img src="{% static 'article_generator/media/icons/icon-telegram.png' %}" alt=""></a>
+                        <a class="footer__social-item" href="#"><img src="{% static 'article_generator/media/icons/icon-vk.png' %}" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -145,6 +160,6 @@
 
 
 
-    <script src="main.js"></script>
+    <script src="../../../static/article_generator/js/main.js"></script>
 </body>
 </html>
