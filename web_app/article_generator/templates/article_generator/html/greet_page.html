@@ -8,7 +8,7 @@
 <form action="{% url 'generator' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Добавить</button>
+    <button type="submit">Сгенерировать статью</button>
 </form>
 </body>
 </html>
