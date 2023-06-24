@@ -1,23 +1,67 @@
-const startTime = [...document.querySelectorAll(".start-time")];
-let separator = document.querySelector('.separator');
-const finishTime = [...document.querySelectorAll(".finish-time")];
-let text = document.querySelectorAll('.item__text').innerHTML;
-let textItems = document.querySelectorAll('.main__inner-right-info-item');
+const navSlide = () => {
+    const burger = document.querySelector('.burger');
+    const header = document.querySelector('.items-list');
+    const itemLinks =  document.querySelectorAll('.items-list li');
 
-// console.log((startTime.forEach(x => JSON.stringify(x.innerHTML))));
+    burger.addEventListener('click', ()=>{
+        //Toggle Nav
+        header.classList.toggle('item-active');
 
-// function copyContent() {
-//     // navigator.clipboard.writeText(`${startTime} ${separator} ${finishTime} ${text}`);
-//     // console.log('Content copied to clipboard');
-//     navigator.clipboard.writeText(JSON.stringify(startTime.innerHTML))
-// }
+        //Animate Links
+        itemLinks.forEach((link, index)=>{
+            if(link.style.animation) {
+                link.style.animation = ''
+            } else {
+                link.style.animation = `headerLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+            }
+        });
+        //Burger animation
+        burger.classList.toggle('toggle');
+    });
+
+}
+
+navSlide();
+
+const dom = {
+    loginBtn: document.querySelector('.item__link-login'),
+    closeBtn: document.querySelector('.modal-window-close'),
+    modalWindow: document.querySelector('.modal-window'),
+    fillerBlock: document.querySelector('.filler'),
+    textarea: document.querySelector('.item__text')
+}
+
+dom.loginBtn.onclick = function() {
+    dom.modalWindow.style.display = 'flex';
+    dom.fillerBlock.style.display = 'block';
+}
+
+dom.closeBtn.onclick = function() {
+    dom.modalWindow.style.display = 'none';
+    dom.fillerBlock.style.display = 'none';
+}
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        dom.modalWindow.style.display = 'none';
+        dom.fillerBlock.style.display = 'none';
+    }
+})
+
 
 function copyContent() {
-    for(item of startTime) {
-        for (item1 of finishTime)
-            navigator.clipboard.writeText(`${item.innerHTML} ${separator.innerHTML} ${item1.innerHTML}`);
-    }
+    navigator.clipboard.writeText(`${dom.textarea.value}`);
 }
+
+function autoAdjust() {
+    dom.textarea.style.height = 'auto';
+    dom.textarea.style.height = dom.textarea.scrollHeight + 'px';
+}
+
+autoAdjust();
+
+
+
 
 
 
