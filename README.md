@@ -9,11 +9,11 @@
 ```
 git clone https://github.com/LYAKAKOY/YouText
 ```
-2. Прописать в терминале docker-compose build;
+2. Собрать docker-compose образ;
 ```
 docker-compose build
 ```
-3. Прописать в терминале docker-compose up;
+3. Запустить docker-compose;
 ```
 docker-compose up
 ```
