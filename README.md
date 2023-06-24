@@ -25,6 +25,7 @@ docker-compose up
 [Ссылка на палитру проекта](https://coolors.co/palette/202020-0e0e0e-1a1a1a-ffffff)
 
 ### Вид страницы со вставкой ссылки и параметрами
+[Дизайн страниц на figma](https://www.figma.com/file/W04IY9oglFvC84yTvOwNRP/youtext?type=design&node-id=0%3A1&mode=design&t=aRNBUtdZTr2vRrBl-1)
 #### Для компьютеров
 ![Вид страницы со вставкой ссылки и параметрами для компьютеров](https://i.imgur.com/JhM3Iw2.png)
 ![Вид страницы со вставкой ссылки и параметрами для компьютеров](https://i.imgur.com/FmF8RkE.png)
