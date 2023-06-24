@@ -16,7 +16,7 @@ def speech_recognition_base():
         for part in range(int(segment['start']) - 5, int(segment['start'])):
             if os.path.exists(f"pictures_youtube/picture_time{part}.jpg"):
                 shutil.move(f"pictures_youtube/picture_time{part}.jpg",
-                            f'article_generator/static/article_generator/picture_time{part}.jpg')
-                text += f"<img src=\'/static/article_generator/picture_time{part}.jpg\' >"
+                            f'article_generator/static/article_generator/picture/picture_time{part}.jpg')
+                text += f"<img src=\'/static/article_generator/picture/picture_time{part}.jpg\' >"
                 break
     return spell(text)

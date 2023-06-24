@@ -1,3 +1,4 @@
+import asyncio
 import datetime
 from celery import shared_task
 from .downloading_youtube_videos import download_audio, audio_cropping
@@ -16,4 +17,4 @@ def task_audio_cropping(start_time: datetime.time, end_time: datetime.time) -> N
 
 @shared_task
 def task_download_pictures(video_path: str, interval_seconds: int = 10) -> None:
-    download_picture_from_video(video_path, interval_seconds)
+    asyncio.run(download_picture_from_video(video_path, interval_seconds))
