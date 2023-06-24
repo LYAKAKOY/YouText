@@ -19,4 +19,4 @@ def speech_recognition_base():
                             f'article_generator/static/article_generator/picture_time{part}.jpg')
                 text += f"<img src=\'/static/article_generator/picture_time{part}.jpg\' >"
                 break
-    return text
+    return spell(text)

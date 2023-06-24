@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>youtext</title>
-    <link rel="stylesheet" href="../../../static/article_generator/css/style.css">
+    <link rel="stylesheet" href="{% static 'article_generator/css/style.css' %}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -15,14 +15,14 @@
                 <div class="header__item">
                     <div><a href="{% url 'generator' %}" class="item__logo">youtext</a></div>
                 </div>
-                {% if user.is_auntificated %}
-                <ul class="items-list">
-                    <li><a href="#" class="item__link item__link-login">войти</a></li>
-                </ul>
+                {% if not request.user.is_authenticated %}
+                    <ul class="items-list">
+                        <li><a href="#" class="item__link item__link-login">войти</a></li>
+                    </ul>
                 {% else %}
                     <ul class="items-list">
-                    <li><a href="{% url 'logout' %}" class="item__link item__link-login">выйти</a></li>
-                </ul>
+                        <li><a href="{% url 'logout' %}" class="item__link item__link-login">выйти</a></li>
+                    </ul>
                 {% endif %}
                 <div class="burger">
                     <div class="line1"></div>   
@@ -144,7 +144,7 @@
             </div>
         </footer>
 
-
+    </div>
 
 
 
