@@ -53,6 +53,7 @@ docker-compose up
 ![Рабочая модель](https://i.imgur.com/qjRUDeg.png)
 ![Рабочая модель](https://i.imgur.com/teDdY8A.png)
 ![Рабочая модель](https://i.imgur.com/kypcBcH.png)
+## made by RTR in 2023
 
 
 
