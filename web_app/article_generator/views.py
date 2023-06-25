@@ -6,6 +6,7 @@ from .downloading_youtube_videos import download_video, video_cropping
 from .speech_recognition import speech_recognition_base
 from .tasks import task_download_audio, task_audio_cropping, delete_file
 from .youtube_video import get_info_about_video, get_video_duration, get_video_id
+from .temporary_files import delete_temporary_files
 
 
 # Create your views here.
@@ -48,6 +49,7 @@ def generator(request):
 
     else:
         form = VideoUrlForm()
+        delete_temporary_files()
         return render(request, 'article_generator/html/index.html', {'form': form})
 
 

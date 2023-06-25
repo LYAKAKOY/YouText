@@ -51,14 +51,21 @@ document.addEventListener('keydown', function(event) {
 })
 
 
-const copyContent = async () => {
+function setSelection() {
+    let target = dom.textarea;
+    rng = document.createRange();
+    rng.selectNode(target)
+    sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(rng);
     try {
-        await navigator.clipboard.writeText(dom.textarea.textContent);
+        document.execCommand('copy');
         successNotification();
         dom.successBtn.style.display = 'flex';
-    } catch (err) {
-        console.error('Failed to copy: ', err);
+    } catch(err) {
+        console.log('Oops, unable to copy');
     }
+     sel.removeAllRanges();
 }
 
 function successNotification() {
