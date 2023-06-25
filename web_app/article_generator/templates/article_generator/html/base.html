@@ -1,11 +1,11 @@
-{% load s %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>youtext</title>
-    <link rel="stylesheet" href="{% static 'article_generator/css/style.css' %}">
+    {% block css %}{%  endblock %}
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -61,14 +61,16 @@
             </div>
         </div>
 
+        <main class="main">
         {% block content %}{% endblock %}
+        </main>
 
 
         <footer class="footer">
             <div class="footer__inner">
                 <div class="footer__text">
                     <div class="footer__name">
-                        youtext
+                        Вопросы
                     </div>
                     <div class="footer__rights">
                         supportyoutext@gmail.com
@@ -85,6 +87,7 @@
             </div>
         </footer>
     </div>
+    {% block js %}{% endblock %}
 
 
 </body>

@@ -20,20 +20,20 @@ def generator(request):
             info_about_video = get_info_about_video(video_url)
             video_data = info_about_video['items'][0]['snippet']
             duration = get_video_duration('video/youtube_video.mp4')
-
-            task = task_audio_cropping.delay(form.cleaned_data['start_time'], form.cleaned_data['end_time'])
+            start_time = form.cleaned_data['start_time']
+            end_time = form.cleaned_data['end_time']
+            task = task_audio_cropping.delay(start_time, end_time)
             task_result = AsyncResult(task.id)
-            video_cropping(form.cleaned_data['start_time'], form.cleaned_data['end_time'])
+            video_cropping(start_time, end_time)
             task_result.wait()
 
             if form.cleaned_data['annotation_length']:
-                text = speech_recognition_base(form.cleaned_data['annotation_length'],
-                                               form.cleaned_data['interval_picture'])
+                text = speech_recognition_base(form.cleaned_data['interval_picture'],
+                                               form.cleaned_data['annotation_length'])
             else:
                 text = speech_recognition_base(form.cleaned_data['interval_picture'])
 
             delete_file.delay()
-
             context = {
                 'text': text,
                 'name_channel': video_data['channelTitle'],
@@ -41,7 +41,8 @@ def generator(request):
                 'article_length': form.cleaned_data['article_length'] or 'не задано',
                 'interval_picture': form.cleaned_data['interval_picture'] or 10,
                 'video': get_video_id(video_url),
-                'duration': duration
+                'duration': duration,
+                'mode_duration': f'от {start_time or "00:00:00"} до {end_time or duration}'
             }
             return render(request, 'article_generator/html/generated.html', context)
 

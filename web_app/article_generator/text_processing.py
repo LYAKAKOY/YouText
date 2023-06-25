@@ -41,7 +41,7 @@ def compute_similarity_matrix(sentences):
     return similarity_matrix
 
 
-def extract_summary(text, summary_length):
+def extract_summary(text, max_symbol):
     preprocessed_sentences = preprocess_text(text)
 
     similarity_matrix = compute_similarity_matrix(preprocessed_sentences)
@@ -51,9 +51,10 @@ def extract_summary(text, summary_length):
                               reverse=True)
 
     summary_sentences = []
-    summary_length = min(summary_length, len(ranked_sentences))
+    summary_length = len(ranked_sentences)
     for i in range(summary_length):
         summary_sentences.append(" ".join(ranked_sentences[i][1]))
-
+        if len(" ".join(summary_sentences)) > max_symbol:
+            break
     summary = " ".join(summary_sentences)
     return summary

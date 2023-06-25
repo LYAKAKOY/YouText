@@ -53,7 +53,7 @@ document.addEventListener('keydown', function(event) {
 
 const copyContent = async () => {
     try {
-        await navigator.clipboard.writeText(dom.textarea.innerHTML);
+        await navigator.clipboard.writeText(dom.textarea.textContent);
         successNotification();
         dom.successBtn.style.display = 'flex';
     } catch (err) {

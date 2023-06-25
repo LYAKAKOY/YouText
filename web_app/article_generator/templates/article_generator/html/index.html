@@ -1,40 +1,10 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>youtext</title>
-    <link rel="stylesheet" href="{% static 'article_generator/css/style.css' %}">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-</head>
-<body>
-    <div class="wrapper"> 
-        <div class="header">
-            <div class="header__container">
-                <div class="header__item">
-                    <div><a href="{% url 'generator' %}" class="item__logo">youtext</a></div>
-                </div>
-                {% if not request.user.is_authenticated %}
-                    <ul class="items-list">
-                        <li><a href="#" class="item__link item__link-login">войти</a></li>
-                    </ul>
-                {% else %}
-                    <ul class="items-list">
-                        <li><a href="{% url 'logout' %}" class="item__link item__link-login">выйти</a></li>
-                    </ul>
-                {% endif %}
-                <div class="burger">
-                    <div class="line1"></div>   
-                    <div class="line2"></div>   
-                    <div class="line3"></div>   
-                </div>
-            </div>
-        </div>
+{% extends 'article_generator/html/base.html' %} {% load static %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'article_generator/css/style.css' %}">{% endblock %}
 
 
-        <main class="main">
-            <div class="main__container">
+{% block content %}
+<div class="main__container">
                 <div class="main__text">
                     <div class="main__title">Начните работу с нашим инструментом</div>
                     <div class="main__subtitle">В один клик сгенерируйте статью по видеоролику</div>
@@ -72,11 +42,11 @@
                             <div class="main__params-length">
                                 <div class="form-error">{{ form.article_length.errors }}</div>
                                 <div class="main__params-subtitle">
-                                    Длина статьи 
+                                    Длина статьи
                                 </div>
                                 {{ form.article_length }}
                             </div>
-    
+
                             <div class="main__params-ann-length">
                                 <div class="form-error">{{ form.annotation_length.errors }}</div>
                                 <div class="main__params-subtitle">
@@ -89,61 +59,7 @@
                 </div>
                 </form>
             </div>
-        </main>
-
-        <!-- modal window -->
-        <div class="filler"></div>
-        <div class="modal-window">
-            <div class="modal-window-header">
-                <div class="modal-window-header-text">youtext</div>  
-                <div class="modal-window-close"><i class='bx bx-x'></i></div>
-            </div>
-            <div class="modal-window-main">
-                <section class="form_auth_section">
-                    <div class="form__content form__content-registration">
-                        <form class="form__auth" action="#" method="post">
-                            <div class="form__container">
-                                <div class="form__text">
-                                    Войти через:
-                                </div>  
-                                <div class="form__social">
-                                    <a href="{% url 'social:begin' 'vk-oauth2' %}" class="form__social-item"><img src="{% static 'article_generator/media/icons/vk-colored.png' %}" alt=""></a>
-                                    <a href="{% url 'social:begin' 'yandex-oauth2' %}" class="form__social-item"><img src="{% static 'article_generator/media/icons/yandex_id.png' %}" alt=""></a>
-                                    <a href="{% url 'social:begin' 'google-oauth2' %}" class="form__social-item"><img src="{% static 'article_generator/media/icons/youtube.png' %}" alt=""></a>
-                                </div>
-                            </div>
-                            <div class="form__important-text">
-                                Авторизуясь, вы получаете бонус.
-                            </div>
-                        </form>
-                    </div>
-                </section>
-            </div>
-        </div>
+{% endblock %}
 
 
-
-        <footer class="footer">
-            <div class="footer__inner">
-                <div class="footer__text">
-                    <div class="footer__name">
-                        youtext
-                    </div>
-                    <div class="footer__rights">
-                        supportyoutext@gmail.com
-                    </div>
-                </div>
-                <div class="footer__social">
-                    <div class="footer__social-title">Мы в социальных сетях:</div>
-                    <div class="footer__social-container">
-                        <a class="footer__social-item" href="#"><img src="{% static 'article_generator/media/icons/icon-discord.png' %}" alt=""></a>
-                        <a class="footer__social-item" href="#"><img src="{% static 'article_generator/media/icons/icon-telegram.png' %}" alt=""></a>
-                        <a class="footer__social-item" href="#"><img src="{% static 'article_generator/media/icons/icon-vk.png' %}" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-    <script src="{% static 'article_generator/js/main.js' %}"></script>
-</body>
-</html>
+{% block js %}<script src="{% static 'article_generator/js/main.js' %}"></script>{% endblock %}
