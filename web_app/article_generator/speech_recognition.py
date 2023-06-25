@@ -20,7 +20,6 @@ def speech_recognition_base(interval: int | None, n: int = 100) -> str:
     result = model.transcribe("./audio/youtube_audio.mp3", fp16=False)
     text = "<center><b>Аннотация</b></center>" + generate_text(result['text'], n) + '.</br> <center><b>Основной текст</b></center>'
     task_result.wait()
-    capture = ''
     for segment in result['segments']:
         text += f"[{round(segment['start'], 2)}:{round(segment['end'], 2)}] {segment['text']}"
         for part in range(int(segment['start']) - 5, int(segment['start'])):
