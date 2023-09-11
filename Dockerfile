@@ -1,20 +1,24 @@
 FROM python:3.10-slim
 
+ENV PYTHONUNBUFFERED 1
+
 WORKDIR /web_app
 
-EXPOSE 8000
-
+# Устанавливаем необходимые зависимости
 RUN apt-get update && apt-get install -y \
     postgresql-client \
     build-essential \
-    libpq-dev
-RUN apt-get update && apt-get install git -y
-RUN pip3 install "git+https://github.com/openai/whisper.git"
-RUN pip3 install "git+https://github.com/ytdl-org/youtube-dl.git"
-RUN apt-get update && apt-get install ffmpeg -y
+    libpq-dev \
+    git \
+    ffmpeg
 
-COPY requirements.txt /temp/requirements.txt
+# Устанавливаем Whisper и youtube-dl
+RUN pip3 install "git+https://github.com/openai/whisper.git" \
+    && pip3 install "git+https://github.com/ytdl-org/youtube-dl.git"
 
-RUN pip3 install -r /temp/requirements.txt
+COPY requirements.txt /web_app/requirements.txt
+RUN pip3 install -r requirements.txt
 
-COPY ./web_app .
+COPY . /web_app
+
+EXPOSE 8000
